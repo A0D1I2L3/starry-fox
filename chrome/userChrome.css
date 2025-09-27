@@ -1,146 +1,116 @@
-   /*bookmarks bar color - make the bar translucent */
-  /*#PersonalToolbar{
-	background-color: rgb(14, 14, 14, 0.5) !important;
-	}*/
-	/*rgb(43, 42, 51, 0.60)*/
-  
-  /*Bookmarks bar show on hover*/
-  #PersonalToolbar{
-	--uc-bm-height: 20px; /* Might need to adjust if the toolbar has other buttons */
-	--uc-bm-padding: 4px; /* Vertical padding to be applied to bookmarks */
-	--uc-autohide-toolbar-delay: 250ms; /* The toolbar is hidden after delaytime */
-	
-	/* 0deg = "show" ; 90deg = "hide" ;  Set the following to control when bookmarks are shown */
-	--uc-autohide-toolbar-focus-rotation: 90deg; /* urlbar is focused */
-	--uc-autohide-toolbar-hover-rotation: 0deg; /* cursor is over the toolbar area */
-  }
-  
-  :root[uidensity="compact"] #PersonalToolbar{ --uc-bm-padding: 1px }
-  :root[uidensity="touch"] #PersonalToolbar{ --uc-bm-padding: 7px }
-  
-  #PersonalToolbar:not([customizing]){
-	position: relative;
-	margin-bottom: calc(0px - var(--uc-bm-height) - 2 * var(--uc-bm-padding));
-	transform: rotateX(90deg);
-	transform-origin: top;
-	transition: transform 135ms linear var(--uc-autohide-toolbar-delay) !important;
-	z-index: 1;
-  }
-  
-  #PlacesToolbarItems > .bookmark-item{ padding-block: var(--uc-bm-padding) !important; }
-  
-  #nav-bar:focus-within + #PersonalToolbar{
-	transition-delay: 100ms !important;
-	transform: rotateX(var(--uc-autohide-toolbar-focus-rotation,0));
-  }
-  
-  #navigator-toolbox:hover > #PersonalToolbar{
-	transition-delay: 100ms !important;
-	transform: rotateX(var(--uc-autohide-toolbar-hover-rotation,0));
-  }
-  
-  #navigator-toolbox:hover > #nav-bar:focus-within + #PersonalToolbar {  
-	transform: rotateX(0);
-  }
-
-  #navigator-toolbox{
-	border-bottom: none !important;
+/* Bookmarks bar always visible */
+#PersonalToolbar {
+    --uc-bm-height: 20px; /* Adjust if the toolbar has other buttons */
+    --uc-bm-padding: 4px; /* Vertical padding to be applied to bookmarks */
+    position: relative;
+    margin-bottom: 0; /* Ensure the margin is reset to 0 */
+    z-index: 1;
+    background-color: rgba(23, 0, 39, 0.2) !important; /* Example background color */
 }
 
-
-/* grey #42414D */
-/** Fix tab icon (sound icon was replacing site icon) */
-/* Always show tab icon */
-.tab-icon-image {
-	opacity: 1 !important;
-  }
-  /* Move tab sound icon to the top left */
-  .tab-icon-overlay {
-	/* top - left */
-	top: -6px !important;
-	inset-inline-end: 6px !important;
-	width: 14px !important;
-	height: 14px !important;
-	padding: 1px !important;
-	/* background */
-	stroke: var(--tab-icon-overlay-stroke, black) !important;
-	background: var(--tab-icon-overlay-stroke, black) !important;
-	fill-opacity: 0.6 !important;
-	/* icon color */
-	color: #00DDFF !important;
-	/* circle */
-	border-radius: 10px !important;
-  }
-  .tab-icon-overlay:hover {
-	/* background */
-	fill-opacity: 1 !important;
-  }
-  
-  /* Remove tab close button. Appear on hover with smooth transitions */
-  .tabbrowser-tab:not([pinned]) .tab-close-button {
-	display: -moz-box !important;
-	opacity: 0;
-	visibility: collapse !important;
-	transition: all 200ms ease-in-out, fill 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;
-		
-  }
-  
-  .tabbrowser-tab:not([pinned]):hover  .tab-close-button {
-	opacity: 1;
-	visibility: visible !important;
-	transition: all 200ms ease-in-out, fill 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;	
-  }
-  .tabbrowser-tab:not([pinned]):hover  .tab-close-button:hover {
-	fill: #FF0000 !important;
-	transition: all 200ms ease-in-out, fill 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;	
+:root[uidensity="compact"] #PersonalToolbar {
+    --uc-bm-padding: 1px;
 }
-	
-    /* Fix mask size */
-  .tabbrowser-tab {
-	--tab-label-mask-size: 1em !important;
-  }
 
-.close-icon{
-	transition: fill 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;	
-  }
-  .close-icon:hover {
-	fill: #FF0000 !important;	
-  }
+:root[uidensity="touch"] #PersonalToolbar {
+    --uc-bm-padding: 7px;
+}
 
-  .tab-background{
-	border-radius: 4px !important;
-	border: transparent !important;
-  }
-	.tab-background[selected="true"] {
-		background: linear-gradient(to right, rgb(159, 26, 255, 0.3), rgb(159, 26, 255, 0.3), rgb(138, 70, 255, 0.3), rgb(118, 93, 255, 0.3), rgb(93, 125, 255, 0.3), rgb(62, 140, 255, 0.3), rgb(28, 153, 255, 0.3), rgb(0, 165, 255, 0.3), rgb(0, 180, 255, 0.3), rgb(0, 195, 255, 0.3), rgb(0, 208, 255, 0.3), rgb(0, 221, 255, 0.3)) no-repeat !important; 
-		
-	} 
-	 
-	  /*container indicator bar to the sides of the tab */
-	#tabbrowser-tabs .tab-context-line {
-		display: none;
-	}
-	
-	.tabbrowser-tab[class*="identity-color-"] .tab-background {
-		border-right: solid 2px var(--identity-icon-color) !important;
-		border-left: solid 2px var(--identity-icon-color) !important;
-		transition: all .15s ease-in-out !important;
-	}
-	
-	.tabbrowser-tab[class*="identity-color-"] .tab-background[selected="true"] {
-		border-right: solid 4px var(--identity-icon-color) !important;
-		border-left: solid 4px var(--identity-icon-color) !important;
-	}
+#PlacesToolbarItems > .bookmark-item {
+    padding-block: var(--uc-bm-padding) !important;
+}
 
-/*container tab label color when selected */
+#navigator-toolbox {
+    border-bottom: none !important;
+}
+
+/* Remove padding in bookmarks menu */
+menupopup > menuitem, menupopup > menu {
+    padding-block: 2px !important;
+}
+
+/* === 1. Close button hidden by default, appears on hover === */
+.tabbrowser-tab:not([pinned]) .tab-close-button {
+  display: -moz-box !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 200ms ease-in-out !important;
+}
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* === 2. Fix tab label mask size === */
+.tabbrowser-tab {
+  --tab-label-mask-size: 1em !important;
+}
+
+/* === 3. Smooth transition for close icon fill === */
+.close-icon {
+  transition: fill 300ms cubic-bezier(0.245, 0.045, 0.255, .4) !important;
+}
+.close-icon:hover {
+  fill: #FF0000 !important;
+}
+
+/* === 4. Selected tab gradient background === */
+.tabbrowser-tab[selected="true"] .tab-background {
+  background: linear-gradient(to right,
+    rgba(159, 26, 255, 0.2),
+    rgba(138, 70, 255, 0.2),
+    rgba(118, 93, 255, 0.2),
+    rgba(93, 125, 255, 0.2),
+    rgba(62, 140, 255, 0.2),
+    rgba(28, 153, 255, 0.2),
+    rgba(0, 165, 255, 0.2),
+    rgba(0, 180, 255, 0.2),
+    rgba(0, 195, 255, 0.2),
+    rgba(0, 208, 255, 0.2),
+    rgba(0, 221, 255, 0.2)
+  ) !important;
+  border-radius: 4px !important;
+  border: none !important;
+}
+
+/* === 5. Container tab side indicators and background with thickness and background change === */
+#tabbrowser-tabs .tab-context-line {
+  display: none !important;
+}
+
+.tabbrowser-tab[class*="identity-color-"] {
+  border-left: 2px solid var(--identity-icon-color, #7C4DFF) !important;
+  border-right: 2px solid var(--identity-icon-color, #7C4DFF) !important;
+  border-radius: 4px !important;
+  background-clip: padding-box !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  transition: border-width 0.15s ease-in-out, background-color 0.15s ease-in-out !important;
+}
+
+.tabbrowser-tab[selected="true"][class*="identity-color-"] {
+  border-left-width: 4px !important;
+  border-right-width: 4px !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* === 6. Container tab label color constant regardless of selection === */
 .tabbrowser-tab[class*="identity-color-"] .tab-label {
-    color: var(--identity-tab-color) !important;
+  color: var(--identity-tab-color, #7C4DFF) !important;
+  text-shadow: none !important;
 }
 
-/*unread tabs -use tab flag extension*/
-.tabbrowser-tab[titlechanged]:not([selected="true"])  .tab-label{font-style: italic !important;color: #00DDFF !important;}
+/* Fallback text-shadow trick */
+.tabbrowser-tab[class*="identity-color-"] .tab-label {
+  color: transparent !important;
+  text-shadow: 0 0 0 var(--identity-tab-color, #7C4DFF) !important;
+}
 
-.tabbrowser-tab[busy]:not([selected="true"]) .tab-label{font-style: italic !important;color: #00DDFF !important;}
+/* === 7. Unread and busy tabs (via extensions like Tab Flag) === */
+.tabbrowser-tab[titlechanged]:not([selected="true"]) .tab-label,
+.tabbrowser-tab[busy]:not([selected="true"]) .tab-label {
+  font-style: italic !important;
+  color: #00DDFF !important;
+}
 
 
 
@@ -242,85 +212,90 @@ toolbarbutton {
 	--in-content-page-background: #101010 !important;
 	}  
 
-  #urlbar-background,#urlbar{ 
-	
-	border-radius: 4px !important;
-	border: transparent !important;
+/* -------------------- URL BAR BORDER -------------------- */
+#urlbar {
+    border: 2px solid transparent !important;
+    border-radius: 8px !important;
+    padding: 1px !important; /* reduced padding */
+    
+    background:
+        linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)) padding-box,
+        linear-gradient(to right,
+            rgba(159,26,255,0.7),
+            rgba(138,70,255,0.7),
+            rgba(118,93,255,0.7),
+            rgba(93,125,255,0.7),
+            rgba(62,140,255,0.7),
+            rgba(28,153,255,0.7),
+            rgba(0,165,255,0.7),
+            rgba(0,180,255,0.7),
+            rgba(0,195,255,0.7),
+            rgba(0,208,255,0.7),
+            rgba(0,221,255,0.7)
+        ) border-box !important;
 
-  }
-  
- #urlbar-background,#urlbar:not([focused=true]) { 
-	border-radius: 4px !important;
-	border: transparent !important;
-	margin-bottom: 2px !important;
-  }
 
-  #urlbar:not([focused=true]) {
-	background-image: linear-gradient(to right, rgb(159, 26, 255, 0.7), rgb(159, 26, 255, 0.7), rgb(138, 70, 255, 0.7), rgb(118, 93, 255, 0.7), rgb(93, 125, 255, 0.7), rgb(62, 140, 255, 0.7), rgb(28, 153, 255, 0.7), rgb(0, 165, 255, 0.7), rgb(0, 180, 255, 0.7), rgb(0, 195, 255, 0.7), rgb(0, 208, 255, 0.7), rgb(0, 221, 255, 0.7)) !important;
-	background-size: auto 4px !important;
-	background-repeat: no-repeat !important;
-	background-position: bottom !important;
-  }
-
-  #urlbar[focused=true]{
-	background-image: linear-gradient(to right, rgb(159, 26, 255, 0.7), rgb(159, 26, 255, 0.7), rgb(138, 70, 255, 0.7), rgb(118, 93, 255, 0.7), rgb(93, 125, 255, 0.7), rgb(62, 140, 255, 0.7), rgb(28, 153, 255, 0.7), rgb(0, 165, 255, 0.7), rgb(0, 180, 255, 0.7), rgb(0, 195, 255, 0.7), rgb(0, 208, 255, 0.7), rgb(0, 221, 255, 0.7)) !important;
-}
-			
-	#urlbar[focused=true] #urlbar-background{ 
-		border-radius: 4px !important;
-		border: transparent !important;
-		margin-bottom: 2px !important;
-		margin-top: 2px !important;
-		margin-left: 2px !important;
-		margin-right: 2px !important;
-		background-color: rgb(17, 17, 17, 0.7) !important;
-			}
-			
-	#urlbar[open=true]{
-		background-image: linear-gradient(to right, rgb(159, 26, 255, 0.7), rgb(159, 26, 255, 0.7), rgb(138, 70, 255, 0.7), rgb(118, 93, 255, 0.7), rgb(93, 125, 255, 0.7), rgb(62, 140, 255, 0.7), rgb(28, 153, 255, 0.7), rgb(0, 165, 255, 0.7), rgb(0, 180, 255, 0.7), rgb(0, 195, 255, 0.7), rgb(0, 208, 255, 0.7), rgb(0, 221, 255, 0.7)) !important;
-	}
-
-	#urlbar[open=true] #urlbar-background{
-		border-radius: 4px !important;
-		border: transparent !important;
-		margin-bottom: 2px !important;
-		margin-top: 2px !important;
-		margin-left: 2px !important;
-		margin-right: 2px !important;
-		background-color: rgb(17, 17, 17, 0.7) !important;
-	}
-
-/* Remove additional buttons from the URL bar, show on hover with smooth transition */
-/*
-#urlbar-input-container>#page-action-buttons {
-	
-    opacity: 0;
-    transition: all 300ms ease-in-out;
+    box-shadow: none !important;
+    background-clip: border-box;
 }
 
-#urlbar-input-container:hover>#page-action-buttons {
-	
-    animation: 300ms delayedFadeIn ease-in-out;
-    opacity: 1;
+/* -------------------- URL BAR BACKGROUND -------------------- */
+.urlbar-background {
+    border-radius: 6px !important;
+     background:
+        linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)) padding-box,
+        linear-gradient(to right,
+            rgba(159,26,255,0.7),
+            rgba(138,70,255,0.7),
+            rgba(118,93,255,0.7),
+            rgba(93,125,255,0.7),
+            rgba(62,140,255,0.7),
+            rgba(28,153,255,0.7),
+            rgba(0,165,255,0.7),
+            rgba(0,180,255,0.7),
+            rgba(0,195,255,0.7),
+            rgba(0,208,255,0.7),
+            rgba(0,221,255,0.7)
+        ) border-box !important;
+
+    background-size: 200% 100%;
 }
 
-@keyframes delayedFadeIn {
-    0% {
-        opacity: 0;
-    }
-    35% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-*/
+/* Background animation for focused or open state */
+.urlbar:is([focused], [open]) > .urlbar-background {
+	margin-top: 0;
+    background:
+        linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)) padding-box,
+        linear-gradient(to right,
+            rgba(159,26,255,0.7),
+            rgba(138,70,255,0.7),
+            rgba(118,93,255,0.7),
+            rgba(93,125,255,0.7),
+            rgba(62,140,255,0.7),
+            rgba(28,153,255,0.7),
+            rgba(0,165,255,0.7),
+            rgba(0,180,255,0.7),
+            rgba(0,195,255,0.7),
+            rgba(0,208,255,0.7),
+            rgba(0,221,255,0.7)
+        ) border-box !important;
 
-/* url mask size change */
+}
+
+/* -------------------- URL BAR INPUT -------------------- */
+#urlbar-input {
+    background: transparent !important; /* show gradient through input */
+    color: #fff !important;
+    border-radius: 6px !important;
+    padding: 3px 4px !important; /* reduced padding */
+    box-shadow: none !important;
+}
+
+
+
 /* #urlbar:not([focused])[textoverflow="right"] > #urlbar-input-container > .urlbar-input-box > #urlbar-input {
 	mask-image: linear-gradient(to left, transparent, black 1ch) !important;
-} */
+} 
 
   #tabs-newtab-button .toolbarbutton-icon {
 	fill: #9400ff !important;
@@ -346,106 +321,130 @@ toolbarbutton {
 	
 	}
 
+
+
 /*■■■■■■■■■■■■■■■■■■■■■■■■■■ FINDBAR CODE ■■■■■■■■■■■■■■■■■■■■■■■■■■*/
+/* fixed findbar */
+/*  Originally posted by @torkelicious in [#13](https://github.com/sagars007/starry-fox/issues/13#issuecomment-2556900723) */
 
-findbar{
-	-moz-box-ordinal-group: 0;
-	margin-bottom: -32px;
-	position: relative;
-	border-top-width: 0 !important;
-	padding: 0 !important;
-	transition: transform 82ms linear, opacity 82ms linear 32ms !important;
-	background: none !important;
-	pointer-events: none;
-	z-index: 1;
-  }
-  
-  .findbar-container > .findbar-find-fast{
-	padding: var(--toolbarbutton-inner-padding) 1px;
-	margin: 0 !important;
-  }
-  
-  findbar[hidden]{ transform: translateY(-30px);}
-  
-  findbar > .findbar-container,
-  findbar > .close-icon{
-	border: 1px transparent;
-	
-	background: var(--uc-light-bkgnd-color,var(--toolbar-bgcolor)) !important;
-	pointer-events: auto;
-  }
-  findbar > .findbar-container{
-	-moz-box-direction: reverse;
-	
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
-  }
-  
-  .findbar-find-status{
-	display: -moz-box;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-moz-box-flex: 1;
-  }
-  
-  .findbar-closebutton{
-	margin: 0 !important;
-	
-	border-top-right-radius: 4px !important;
-	border-bottom-right-radius: 4px !important;
-	border-top-left-radius: 0px !important;
-	border-bottom-left-radius: 0px !important;
-
-	padding: 5px !important;
-  }
-  .findbar-closebutton > image{ padding: 3px }
-  .findbar-closebutton:hover > image{
-	background: var(--toolbarbutton-hover-background) !important;
-	border-radius: 4px
-  }
-  findbar > .findbar-container > hbox{ margin: 0 5px }
-  
-  findbar::before{
-	content:"";
-	display: -moz-box;
-	-moz-box-flex: 100;
-  }
-  
-  findbar{
-	margin-right: 16px;
-	
-  }
-
-
-
-.findbar-textbox{
-	border-radius: 4px !important;
-	border: transparent !important;
-	--focus-outline-color: transparent !important;
-	margin-bottom: 2px !important;
-	background-position: bottom !important;
-	background-size: auto 2px !important;
-	background-repeat: no-repeat !important;
-    background-image: linear-gradient(to right, rgb(159, 26, 255, 0.7), rgb(159, 26, 255, 0.7), rgb(138, 70, 255, 0.7), rgb(118, 93, 255, 0.7), rgb(93, 125, 255, 0.7), rgb(62, 140, 255, 0.7), rgb(28, 153, 255, 0.7), rgb(0, 165, 255, 0.7), rgb(0, 180, 255, 0.7), rgb(0, 195, 255, 0.7), rgb(0, 208, 255, 0.7), rgb(0, 221, 255, 0.7)) !important;
+findbar {
+    order: -1 !important;
+    margin-bottom: -33px !important;
+    position: relative;
+    border-top: none !important;
+    padding: 0 !important;
+    transition: transform 82ms linear, opacity 82ms linear 32ms !important;
+    /* floating findbar Derive findbar background from theme colors https://github.com/MrOtherGuy/firefox-csshacks/commit/2a0f40b305b81b129cc5db6dbffbbe9ff028bc90 */
+    background: none !important;
+    pointer-events: none;
+    z-index: 1;
+    white-space: nowrap;
 }
 
-.findbar-textbox:focus{
-	border-radius: 4px !important;
-	border: transparent !important;
-	--focus-outline-color: transparent !important;
-	background-color: rgb(17, 17, 17) !important;
+.findbar-container > .findbar-find-fast {
+    padding: var(--toolbarbutton-inner-padding) 1px;
+    margin: 0 !important;
 }
+
+findbar[hidden] {
+    transform: translateY(-36px);
+}
+
+findbar > .findbar-container,
+findbar > .close-icon {
+    border: 1px solid #250023 !important;
+    border-width: 0 0 1px 0px !important;
+    background-color: #000000 !important;
+    background-image: linear-gradient(#160016, #000000), var(--lwt-header-image, none);
+    pointer-events: auto;
+}
+
+findbar > .findbar-container {
+    flex-direction: row-reverse;
+    border-bottom-right-radius: 4px;
+    border-right-width: 1px;
+    height: initial !important;
+    overflow-inline: visible !important;
+    margin-inline-start: 8px;
+}
+
+.findbar-find-status {
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.findbar-closebutton {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 5px !important;
+    width: initial !important;
+}
+
+.findbar-closebutton > image {
+    padding: 3px;
+}
+
+.findbar-closebutton:hover > image {
+    background: dodgerblue !important;
+    border-radius: 4px;
+}
+
+findbar > .findbar-container > hbox {
+    margin: 0 30px;
+}
+
+findbar::before {
+    content: "";
+    display: flex;
+    flex-grow: 1;
+}
+
+.findbar-textbox::placeholder,
+.findbar-highlight,
+.findbar-case-sensitive,
+.findbar-match-diacritics,
+.findbar-entire-word,
+.findbar-label {
+    font-family: 'Fira Sans', sans-serif !important;
+    color: white !important;
+}
+
+.findbar-textbox {
+    background-color: black !important;
+    color: white !important;
+    font-family: 'Fira Sans', sans-serif !important;
+}
+
 
 /*searchbar in navbar */
-#searchbar{
-	border-radius: 4px !important;
-	border: transparent !important;
-	margin-bottom: 2px !important;
-	background-position: bottom !important;
-	background-size: auto 2px !important;
-	background-repeat: no-repeat !important;
-    background-image: linear-gradient(to right, rgb(159, 26, 255, 0.7), rgb(159, 26, 255, 0.7), rgb(138, 70, 255, 0.7), rgb(118, 93, 255, 0.7), rgb(93, 125, 255, 0.7), rgb(62, 140, 255, 0.7), rgb(28, 153, 255, 0.7), rgb(0, 165, 255, 0.7), rgb(0, 180, 255, 0.7), rgb(0, 195, 255, 0.7), rgb(0, 208, 255, 0.7), rgb(0, 221, 255, 0.7)) !important;
+#searchbar {
+  border-radius: 4px !important;
+  border: transparent !important;
+  margin: 8px 12px !important;   /* Added margin: 8px top-bottom, 12px left-right */
+  padding: 6px 10px !important;  /* Added padding: 6px top-bottom, 10px left-right */
+  background-position: bottom !important;
+  background-size: auto 2px !important;
+  background-repeat: no-repeat !important;
+  background-image: linear-gradient(
+    to right,
+    rgb(159, 26, 255, 0.7),
+    rgb(159, 26, 255, 0.7),
+    rgb(138, 70, 255, 0.7),
+    rgb(118, 93, 255, 0.7),
+    rgb(93, 125, 255, 0.7),
+    rgb(62, 140, 255, 0.7),
+    rgb(28, 153, 255, 0.7),
+    rgb(0, 165, 255, 0.7),
+    rgb(0, 180, 255, 0.7),
+    rgb(0, 195, 255, 0.7),
+    rgb(0, 208, 255, 0.7),
+    rgb(0, 221, 255, 0.7)
+  ) !important;
 }
+
+
 
   .search-panel-tree > .autocomplete-richlistitem:hover {
 	border-radius: 4px !important;
@@ -497,7 +496,7 @@ findbar{
   #viewButton{
 	background-color: #000000 !important;
 	border-radius: 4px !important;
-	transition: background-color 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+	transition: background-color 300ms cubic-bezier(0.245, 0.045, 0.255, .4) !important;
 
   }
   
@@ -508,7 +507,7 @@ findbar{
 
 
   #sidebar-box #sidebar-header #sidebar-switcher-target {
-	transition: background-color 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+	transition: background-color 300ms cubic-bezier(0.245, 0.045, 0.255, .4) !important;
   }
   #sidebar-box #sidebar-header #sidebar-switcher-target:hover,
   #sidebar-box #sidebar-header #sidebar-switcher-target.active {
@@ -607,6 +606,7 @@ findbar{
 }*/
 
 #textbox-contextmenu{
+	
 	--panel-color: rgba(255, 255, 255, 0.800000011920929) !important;
 	--panel-border-color: rgb(48, 48, 48) !important;
 	--panel-background: #101010 !important;
@@ -765,7 +765,7 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
 		background: #101010 !important;
 		color: rgba(255, 255, 255, 0.800000011920929) !important;
 		border-radius: 4px !important;
-		transition: background 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+		transition: background 300ms cubic-bezier(0.245, 0.045, 0.255, .4) !important;
 		
 	}
 
@@ -885,7 +885,7 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
   
   /* vertical alignment urlbar */
   #urlbar[breakout=true]:not([open="true"]) {
-	  --urlbar-height: 20px !important;
+	  --urlbar-height: 30px !important;
 	  --urlbar-toolbar-height: 24px !important;
   }
   
@@ -907,7 +907,7 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
   
   /* Reduce spacing in toolbar */
   #urlbar-container {
-	  --urlbar-container-height: 30px !important;
+	  --urlbar-container-height: 50px !important;
 	margin-top: 0 !important;
   }
   
@@ -924,7 +924,7 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
 }
 
 .close{
-	transition: fill 300ms cubic-bezier(0.645, 0.045, 0.355, 1) !important;	
+	transition: fill 300ms cubic-bezier(0.245, 0.045, 0.255, .4) !important;	
   }
   .close:hover {
 	fill: #FF0000 !important;	
@@ -976,7 +976,7 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
 /* HTML5 dark mode web notifs */
 @-moz-document url("chrome://global/content/alerts/alert.xhtml") {
 	#alertBox {
-	  border-color: rgb(48, 48, 48, .4) !important;
+	  border-color: rgb(48, 48, 48, .2) !important;
 	  border-radius: 4px !important;
 	  background-color: #101010 !important;
 	  color: rgba(255, 255, 255, 0.800000011920929) !important;
@@ -994,7 +994,7 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
 	  margin: 0px 2px -3px 0px !important;
 	  color: inherit !important;
 	  border-radius: 4px !important;
-	  transform: scale(0.91, 0.91) !important;
+	  transform: scale(0.51, 0.51) !important;
 	}
 
 	#alertSettings:hover,  #alertSettings[open] {
@@ -1053,3 +1053,9 @@ menu:not([_moz-menuactive="true"]), menuitem:not([_moz-menuactive="true"]){
   }
 
 }
+
+toolbarbutton.bookmark-item {
+  margin-inline: 6px !important;
+}
+
+
